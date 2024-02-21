@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/', to: 'blog_posts#index', as: 'root'
   get '/blog/new', to: 'blog_posts#new', as: :new_blog_post
   get '/blog/:id', to: 'blog_posts#show', as: :blog_post
+  patch '/blog/:id', to: 'blog_posts#update'
+  get '/blog/:id/edit', to: 'blog_posts#edit', as: :edit_blog_post
 
   post '/blog/create', to: 'blog_posts#create', as: :blog_posts
 
