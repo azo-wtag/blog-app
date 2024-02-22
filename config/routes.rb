@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/blog/new', to: 'blog_posts#new', as: :new_blog_post
   get '/blog/:id', to: 'blog_posts#show', as: :blog_post
   patch '/blog/:id', to: 'blog_posts#update'
+  delete '/blog_post/:id', to: 'blog_post#destroy'
   get '/blog/:id/edit', to: 'blog_posts#edit', as: :edit_blog_post
 
   post '/blog/create', to: 'blog_posts#create', as: :blog_posts
