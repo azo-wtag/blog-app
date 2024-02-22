@@ -31,6 +31,8 @@ class BlogPostsController < ApplicationController
     @blog_post = BlogPost.find(params[:id])
 
     if @blog_post.update(blog_post_params)
+      binding.pry
+      TestJob.perform_async()
       redirect_to @blog_post
     else
       redirect_to :edit, status: :unprocessable_entity
