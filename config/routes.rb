@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   post '/blog/create', to: 'blog_posts#create', as: :blog_posts
 
 
+  mount API::Base => '/'
+
+
 
   # Defines the root path route ("/")
   # root "posts#index"
