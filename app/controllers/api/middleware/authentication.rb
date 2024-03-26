@@ -9,21 +9,28 @@ module API
 
       #called before api execuion
       def before
-        Rails.logger.info V1::Base::routes[0]&.settings&.dig(:authentication, :optional)
-        auth_optional = V1::Base::routes[0]&.settings&.dig(:authentication, :optional)
+        Rails.logger.info "endpoint --> #{route&.settings}"
+        auth_optional = route&.settings&.dig(:authentication, :optional)
 
         if auth_optional
-          Rails.logger.info "Authentication is Optional for this endpoint"
+          Rails.logger.info "Authentication is Optional"
         else
           authenticate!
         end
       end
 
-
       private
 
       def authenticate!
-        Rails.logger.info "authentication middleware"
+        Rails.logger.info "Curretn loggedin User #{session['current_user_id']}"
+      end
+
+      def session
+        env['rack.session']
+      end
+
+      def route
+        env['api.endpoint'].route
       end
     end
   end

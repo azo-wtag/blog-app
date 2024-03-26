@@ -1,9 +1,8 @@
 module API
   class Base < Grape::API
+    use ActionDispatch::Session::CookieStore
     use Middleware::Authentication
     format :json
-
-    mount API::V1::Base
 
     helpers do
       def permitted_params
@@ -11,5 +10,6 @@ module API
       end
     end
 
+    mount API::V1::Base
   end
 end
